@@ -38,7 +38,6 @@ class App extends Component {
   }
 
   handleAddPlayer = (name) => {
-      console.log(...this.state.players);
       this.setState( prevState => {
         return {
           players: [
@@ -65,7 +64,6 @@ class App extends Component {
     return (
       <div className="scoreboard">
         <Header 
-          title="Scoreboard" 
           players={this.state.players}
         />
   
