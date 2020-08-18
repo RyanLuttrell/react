@@ -1,15 +1,55 @@
-const desc = 'I just learned how to create a React node and render it into the DOM!';
-const myTitleId = 'main-title';
-const name = 'Ryan';
+const Header = (props) => {
+    return (
+        <header>
+            <h1>{props.title}</h1>
+            <span className='stats'>Players: {props.totalPlayers}</span>
+        </header>
+    );
+}
 
-const header = (
-    <header>
-        <h1 id={myTitleId}>{name}'s First React Element</h1>
-        <p>{desc}</p>
-    </header>
-);
+const Player = (props) => {
+    return (
+        <div className='player'>
+            <span className='player-name'>
+                {props.name}
+            </span>
+
+            <Counter 
+                score = {props.score}
+            />
+
+        </div>
+    );
+}
+
+const Counter = (props) => {
+    return(
+        <div className='counter'>
+            <button className='counter-action decrement'> - </button>
+            <span className='counter-score'>{props.score}</span>
+            <button className='counter-action increment'> + </button>
+        </div>
+    );
+}
+
+const App = () => {
+    return (
+        <div className='scoreboard'>
+            <Header 
+                title='Scoreboard' 
+                totalPlayers={1}
+            />
+
+            {/** Players list */}
+            <Player name='Ryan' score={50} />
+            <Player name='Victoria' score={95} />
+            <Player name='Trevor' score={22} />
+            <Player name='Jess' score={67} />
+        </div>
+    );
+}
 
 ReactDOM.render(
-    header,
+    <App/>,
     document.getElementById('root')
 );
