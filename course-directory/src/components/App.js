@@ -4,6 +4,7 @@ import {
   Route,
   Switch
 } from 'react-router-dom';
+
 import Home from './Home';
 import About from './About';
 import Header from './Header';
@@ -20,7 +21,7 @@ const App = () => (
         <Route exact path="/" render={() => <Home />}/>
         <Route path='/about' render={() => <About title='About' />}/>
         <Route exact path='/teachers' component={Teachers}/>
-        <Route path='/teachers/:fname-:lname/:topic' component={Featured}/>
+        <Route path='/teachers/:topic/:name' component={Featured}/>
         <Route path='/courses' component={Courses}/>
         <Route component={NotFound}/>
       </Switch>
