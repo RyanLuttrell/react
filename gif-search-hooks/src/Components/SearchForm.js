@@ -1,13 +1,15 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function SearchForm(props) {
+  const [searchText, setSearchText] = useState('');
 
   const onSearchChange = (e) => { 
-    // Update state 
+    setSearchText(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    props.onSearch(searchText)
     e.currentTarget.reset();
   }
 
