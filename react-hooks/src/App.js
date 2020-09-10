@@ -1,9 +1,18 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './App.css';
 
 function App() {
   const [score, setScore] = useState(0);
-  const [message, setMessage] = useState('Welcome!')
+  const [message] = useState('Welcome!')
+  const [data, setData] = useState('');
+
+  useEffect(() => {
+    document.title = `${message} Your score is ${score}`;
+    fetch('https://dog.ceo/api/breeds/image/random')
+      .then(res => res.json())
+      .then(data => setData(data.message))
+      .catch(err => console.log("Oh no! ", err))
+  }, [message, score]);
 
   return (
     <div className="App">
@@ -16,6 +25,9 @@ function App() {
         <button onClick={() => setScore(prevScore => prevScore - 1)}>
           Decrease Score
         </button>
+        <div className="App">
+          <img src={data} alt='A random dog breed'/>
+        </div>
       </header>
     </div>
   );
